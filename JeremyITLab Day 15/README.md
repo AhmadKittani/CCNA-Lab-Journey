@@ -1,1 +1,27 @@
-Jeremy’s IT lab  day 15 Lab  - I subnetted all 4 LANs with the point-to-point connection.  - I assigned the first usable addresses of all LANs to their PCs, and the Default Gateways.  - and assigned the last usable addresses to their router/Default Gateway  Problem: during the assignment of the ip addresses to the ports of the routers, Specifically R2, I run into an error stating some IP address overlapping.  Solution: after some search, the problem was that I put the mask as .255.224 for a /28 rather than .255.240.  - I configured the static routes for each of the routers   Problem: Pinging PC2 from PC1 resulted in 100% packet loss with multiple tries. Solution: I assigned LAN 1’s Default Gateway IP address to LAN2’s port in R1, and vice versa. — During this problem I learned that the no command is required when swapping 2 ports’ IP addresses.  - Pinging PC2 from PC1 WORKED, proving the connectivity between LAN1 and LAN2.   Problem: Pinging PC4 from PC3 resulted in 100% packet loss with multiple tries.  Solution: I put PC3’s IP address in the router’s port of PC3’s LAN instead of the Default Gateway, and a lot of other small problems of mistyping and not correcting the previous subnet mask Problem of assigning .255.224 instead of .255.240.   - Pinging PC4 from PC3 WORKED, proving the connectivity between LAN3 and LAN4.   - Pinging PC2 from PC1 WORKED, Proving WAN connectivity.   — One of the most useful commands was show ip interface brief  
+# Jeremy’s IT lab
+
+## day 15 Lab
+
+- I subnetted all 4 LANs with the point-to-point connection.
+
+- I assigned the first usable addresses of all LANs to their PCs, and the Default Gateways.
+
+- and assigned the last usable addresses to their router/Default Gateway
+  - **Problem:** during the assignment of the ip addresses to the ports of the routers, Specifically R2, I run into an error stating some IP address overlapping.
+  - **Solution:** after some search, the problem was that I put the mask as `.255.224` for a `/28` rather than `.255.240`.
+
+- I configured the static routes for each of the routers
+  - **Problem:** Pinging PC2 from PC1 resulted in 100% packet loss with multiple tries.
+  - **Solution:** I assigned LAN 1’s Default Gateway IP address to LAN2’s port in R1, and vice versa.
+  
+  > — During this problem I learned that the `no` command is required when swapping 2 ports’ IP addresses.
+
+- Pinging PC2 from PC1 WORKED, proving the connectivity between LAN1 and LAN2.
+  - **Problem:** Pinging PC4 from PC3 resulted in 100% packet loss with multiple tries.
+  - **Solution:** I put PC3’s IP address in the router’s port of PC3’s LAN instead of the Default Gateway, and a lot of other small problems of mistyping and not correcting the previous subnet mask Problem of assigning `.255.224` instead of `.255.240`.
+
+- Pinging PC4 from PC3 WORKED, proving the connectivity between LAN3 and LAN4.
+
+- Pinging PC2 from PC1 WORKED, Proving WAN connectivity.
+
+> — One of the most useful commands was `show ip interface brief`
